@@ -1,0 +1,14 @@
+{
+  "device_id": "StanzaCulmone",
+  "collected_at": 1761955195,
+  "collected_at_tz": "2025-10-31T23:59:55",
+  "sensors": {
+    "light": 0,
+    "co2": 488,
+    "temperature": 21.62,
+    "humidity": 59.45,
+    "tvoc": 0,
+    "eco2": 400,
+    "people_count": 0
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "device_id": "AB1-02",
+  "collected_at": 1761955201,
+  "collected_at_tz": "2025-11-01T00:00:01",
+  "sensors": {
+    "light": 3,
+    "co2": 503,
+    "temperature": 21.1,
+    "humidity": 52.3,
+    "tvoc": 10,
+    "eco2": 414,
+    "people_count": 0
+  }
+}

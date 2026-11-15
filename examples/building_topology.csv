@@ -1,0 +1,16 @@
+building;floor;room;device
+polo_a;ground_floor;AA1;AA1-01
+polo_a;ground_floor;AA1;AA1-02
+polo_a;first_floor;AB1;AB1-01
+polo_a;first_floor;AB2;AB2-01
+polo_a;first_floor;AB2;AB2-02
+polo_b;ground_floor;B1;B1-01
+polo_b;ground_floor;B1;B1-03
+polo_a;ground_floor;LA1;LA1-01
+polo_a;ground_floor;LA1;LA1-02
+polo_b;ground_floor;LB1;LB1-01
+polo_a;first_floor;SalaRiunioni;SalaRiunioni
+polo_a;first_floor;StanzaCulmone;StanzaCulmone
+polo_a;first_floor;StanzaDocente;StanzaDocente
+polo_a;ground_floor;TeamLab;TeamLab-01
+polo_a;ground_floor;TeamLab;TeamLab-02
