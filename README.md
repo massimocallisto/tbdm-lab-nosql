@@ -144,10 +144,10 @@ room*. More location information would be needed for that relationship.
 4. Try a second model and compare its answer. Why can Redis not return
    the complete history? What is the limit of the graph's room label?
 
-Optional activities
-A. Stream the dataset from the JSON-NL file available at the [following link](https://unicamit-my.sharepoint.com/:u:/g/personal/dtmassimo_callisto_unicam_it/IQANovbf79LNRrSjjpK4BwbCAabOHgyMuLVJOSXD9n0u6Ts?e=kXEASz). 
-B. Use the file [examples/building_topology.csv](examples/building_topology.csv) to handle relations in the graph database storage.
-B. Implement a simple simulator to stream live data over MQTT.
+**Optional activities**
+1. Stream the dataset from the JSON-NL file available at the [following link](https://unicamit-my.sharepoint.com/:u:/g/personal/dtmassimo_callisto_unicam_it/IQANovbf79LNRrSjjpK4BwbCAabOHgyMuLVJOSXD9n0u6Ts?e=kXEASz). 
+2. Use the file [examples/building_topology.csv](examples/building_topology.csv) to handle relations in the graph database storage.
+3. Implement a simple simulator to stream live data over MQTT.
 
 ## Notes
 
@@ -164,3 +164,8 @@ B. Implement a simple simulator to stream live data over MQTT.
 - If you change MQTT credentials, run `broker-init` again and restart the
   broker. ArangoDB initializes its root password on a fresh data volume.
   Keep `.env` and `mosquitto/passwords` private; neither is in this ZIP.
+
+## Extensions
+
+Check the [README_extensions.md](README_extensions.md) for extra activities 
+related to the database examples.

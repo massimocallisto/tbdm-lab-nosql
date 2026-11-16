@@ -1,0 +1,6 @@
+{"device_id":"StanzaCulmone","collected_at":1761955195,"collected_at_tz":"2025-10-31T23:59:55","sensors":{"light":0,"co2":488,"temperature":21.62,"humidity":59.45,"tvoc":0,"eco2":400,"people_count":0}}
+{"device_id":"B1-01","collected_at":1761955190,"collected_at_tz":"2025-10-31T23:59:50","sensors":{"light":0,"co2":518,"temperature":20.93,"humidity":64.64,"tvoc":0,"eco2":400,"people_count":0}}
+{"device_id":"AA1-02","collected_at":1761955188,"collected_at_tz":"2025-10-31T23:59:48","sensors":{"light":10.83,"co2":467,"temperature":20.15,"humidity":67.69,"tvoc":0,"eco2":400,"people_count":0}}
+{"device_id":"TeamLab-01","collected_at":1761955186,"collected_at_tz":"2025-10-31T23:59:46","sensors":{"light":0.83,"co2":481,"temperature":20.86,"humidity":65.95,"tvoc":60000,"eco2":57330,"people_count":0}}
+{"device_id":"AB1-02","collected_at":1761955186,"collected_at_tz":"2025-10-31T23:59:46","sensors":{"light":0.83,"co2":473,"temperature":21.98,"humidity":61.29,"tvoc":269,"eco2":422,"people_count":0}}
+{"device_id":"TeamLab-02","collected_at":1761955182,"collected_at_tz":"2025-10-31T23:59:42","sensors":{"light":0,"co2":473,"temperature":22.64,"humidity":61.27,"tvoc":164,"eco2":474,"people_count":0}}
