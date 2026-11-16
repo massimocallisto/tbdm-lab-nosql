@@ -62,23 +62,6 @@ The input is a JSONL file with **one JSON object per line** and fields like:
 The device name is used exactly as it appears in the input. For instance,
 `StanzaCulmone` is not renamed to `StanzaCulmone-01` in this activity.
 
-## Questions for discussion
-
-- Are the answers different when you query the JSONL and Parquet versions?
-- For the hourly average, which columns are needed? Which of the exported
-  sensor columns can a Parquet reader avoid reading?
-- Which representation would you use to preserve the incoming JSON messages?
-  Which would you choose for repeated analytical queries, and why?
-- Is a Parquet file indexed like an HBase table by row key? What would change
-  if you wanted the full history of one device?
-
-**Limits of this example.** The supplied sample has only six readings, all
-in the same hour and at most one per device. It demonstrates the workflow,
-not a meaningful time trend or a reliable speed comparison. Use a larger
-export spanning several hours or days to investigate performance or trends.
-The field `collected_at_tz` in the source has no explicit timezone offset;
-this activity uses the numeric `collected_at` instead. Device labels do not
-establish a verified physical location without the topology inventory.
 
 ## Further reading
 

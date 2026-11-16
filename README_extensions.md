@@ -70,14 +70,3 @@ values and lists the two devices whose parsed room label is TeamLab.
 `StanzaCulmone-01` (488) and `TeamLab-01` (481). This is a ranking of
 **latest received readings**, not a historical aggregate. Running the script
 again with updated readings updates each device's score.
-
-## Limits worth discussing
-
-- The JSONL contains one reading per device. Add multiple timestamps per
-  device before asking students to analyze trends or changes over time.
-- The CSV lists `AB1-01` but does **not** list `AB1-02`. Do not infer
-  the latter's physical location from the similar label alone.
-- Numeric sensor units and thresholds have not been established in this
-  example. Use comparisons and rankings, not unsupported alarm levels.
-- The scripts are teaching examples. They assume the supplied files have the
-  stated columns and valid JSON; they do not implement a production importer.
