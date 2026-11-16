@@ -5,6 +5,27 @@ from .model import observation
 
 
 def connect_arango():
+    """
+    Initializes access to an ArangoDB database using application settings.
+
+    Reads the configured ArangoDB endpoint, root password, and database name.
+    It connects to the system database as the root user, ensures the configured
+    database exists, and prepares access to that database for application
+    operations.
+
+    Args:
+        None
+
+    Returns:
+        arango.database.StandardDatabase: Database connection object for the
+        configured ArangoDB database.
+
+    Raises:
+        ImportError: If the ArangoDB client package cannot be imported.
+        arango.exceptions.ArangoError: If connecting, authenticating, checking
+        database existence, creating the database, or opening the target
+        database fails.
+    """
     from arango import ArangoClient
 
     client = ArangoClient(hosts=setting('ARANGO_URL', 'http://127.0.0.1:8529'))
@@ -17,6 +38,18 @@ def connect_arango():
 
 
 class ArangoStore:
+    """
+    Manage ArangoDB persistence for sensor readings.
+
+    Provides a storage component that connects to ArangoDB and prepares the
+    collections required to associate devices, room labels, device-room
+    relationships, and reading documents. The store centralizes persistence setup
+    for sensor ingestion while keeping related records available for later queries.
+
+    Raises:
+        Exception: If the database connection cannot be established, required
+            collections cannot be created, or collection handles cannot be opened.
+    """
     def __init__(self):
         self.db = connect_arango()
         for name in ('devices', 'room_labels', 'readings'):
