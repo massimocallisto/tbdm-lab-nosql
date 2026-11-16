@@ -169,3 +169,6 @@ room*. More location information would be needed for that relationship.
 
 Check the [README_extensions.md](README_extensions.md) for extra activities 
 related to the database examples.
+
+Check the [README_duckdb_parquet.md](README_duckdb_parquet.md) for extra activities 
+related to the columnar data format and Apache Parquet.
