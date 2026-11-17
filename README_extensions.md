@@ -20,6 +20,14 @@ The sample scripts write only into collections beginning with `exercise_`
 and Redis keys beginning with `exercise:`; they leave the live MQTT
 collections and keys alone. Re-running the scripts updates the sample readings.
 
+
+To load the JSON-NL check this as example:
+
+```
+python -m iot_lab.publish_nl  # uses default file example/device_data-example.jsonl
+python -m iot_lab.publish_nl --file path/to/your/file.jsonl
+```
+
 ## Extension 1: MongoDB (documents plus an inventory join)
 
 `mongo_example.py` imports the JSONL into `exercise_readings` and the CSV
