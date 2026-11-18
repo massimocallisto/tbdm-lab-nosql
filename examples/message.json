@@ -1,7 +1,7 @@
 {
-  "device_id": "StanzaCulmone",
+  "device_id": "ResearcherRoom",
   "collected_at": 1761955195,
-  "collected_at_tz": "2025-10-31T23:59:55",
+  "collected_at_tz": "2025-11-17T17:35:55",
   "sensors": {
     "light": 0,
     "co2": 488,
