@@ -17,16 +17,63 @@ project/
 
 Each line of `device_data-example.jsonl` contains one reading, including `device_id`, `collected_at_tz`, and a nested `sensors` object. Spark reads these JSON Lines into a DataFrame and infers a schema. The text in `collected_at_tz` has no explicit timezone offset; this lab uses its displayed date and time without claiming a verified timezone.
 
+
+## 1. Check the prerequisites
+
+- **Python 3.11 or newer**. Install it from [python.org](https://www.python.org/downloads/) if needed.
+- **Java 17** (JDK). It works with both Spark 3.5 and Spark 4.x. Install it only if you do not already have a compatible JDK.
+- An internet connection for the initial package installation.
+
+The instructions below install the current PySpark release. If the course project specifies a Spark version, install the matching PySpark version instead (for example, `pyspark==3.5.8`) and check that your Python and Java versions meet its requirements. Run all commands from a terminal opened **in the project directory**. Later, this directory must contain `examples/device_data-example.jsonl` for the IoT exercises.
+
+### macOS (Terminal)
+
+Check your installations:
+
+```bash
+python3 --version
+java -version
+```
+
+If you need Java 17 and already use Homebrew, install it and point `JAVA_HOME` to it in the terminal used for this lab:
+
+```bash
+brew install openjdk@17
+export JAVA_HOME="$(brew --prefix openjdk@17)/libexec/openjdk.jdk/Contents/Home"
+"$JAVA_HOME/bin/java" -version
+```
+
+Create an isolated Python environment, install the packages, register its Jupyter kernel, and start JupyterLab:
+
+```bash
+python -m pip install pyspark
+```
+
+If Java 17 is already installed, you can skip `brew install`; ensure that Java is available to the terminal starting Jupyter. To use a specific course version, replace `pyspark` in the `pip install` command with `pyspark==VERSION`.
+
+### Windows (PowerShell)
+
+Check your installations:
+
+```powershell
+py -3 --version
+java -version
+```
+
+If `java` is not recognized, install a [Java 17 JDK for Windows](https://learn.microsoft.com/en-us/java/openjdk/download), set `JAVA_HOME` to the JDK installation directory and add `%JAVA_HOME%\bin` to `Path`. Close and reopen PowerShell, then repeat `java -version`. If `py` is not recognized, install Python from [python.org](https://www.python.org/downloads/) and reopen PowerShell.
+
+
 ## Start a Spark session
 
-If your PySpark shell or notebook already provides a `spark` session, use that session and run only the imports. Otherwise, create one locally:
+Execute the pyspark command from the current directory:
 
-```python
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import avg, col, count, max, min, round, to_timestamp
-
-spark = SparkSession.builder.master("local[*]").appName("IoT batch lab").getOrCreate()
 ```
+pyspark
+```
+
+The result must be an interface like this:
+
+![alt text](pyspark.png "Pyspark shell")
 
 ### Optional warm-up: select, filter, summarize
 
