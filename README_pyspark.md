@@ -92,6 +92,22 @@ filtered_accounts.summary().show()
 
 ## Load the IoT readings
 
+First import the required dependencies:
+
+```python
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import (
+    avg,
+    col,
+    count,
+    max,
+    min,
+    regexp_replace,
+    round,
+    to_timestamp,
+)
+````
+
 Read the JSON Lines file once and reuse the resulting DataFrame in the examples below. `printSchema()` reveals that the measurement fields are inside the `sensors` structure.
 
 ```python
@@ -261,11 +277,36 @@ df_verifica = spark.read.parquet(output_path)
 df_verifica.show()
 ```
 
-## What to discuss after running the examples
+### Example 13 — Join sensor readings with building topology
 
-- Which operations only describe a new DataFrame, and which ones trigger execution?
-- Why can two interfaces, DataFrame operations and Spark SQL, produce the same summary?
-- Why does writing a distributed DataFrame produce a directory of Parquet files?
-- How would the results change if we added more readings from the same device?
+Extract a room key from each `device_id`, then join the readings with the topology CSV to add the building and floor. Because the CSV lists multiple devices per room, keep one topology row per room before joining to avoid duplicating readings.
 
-For further reading, see the Apache Spark documentation on [JSON data sources](https://spark.apache.org/docs/latest/sql-data-sources-json.html), [DataFrames and Spark SQL](https://spark.apache.org/docs/latest/sql-programming-guide.html), and [Parquet data sources](https://spark.apache.org/docs/latest/sql-data-sources-parquet.html).
+```python
+from pyspark.sql.functions import regexp_replace
+
+topology = (
+    spark.read
+    .option("header", True)
+    .option("sep", ";")
+    .csv("examples/building_topology.csv")
+)
+
+# The CSV has one row per device. Keep one row per physical room,
+# otherwise a reading could be duplicated by the join.
+rooms = topology.select("room", "building", "floor").distinct()
+
+df_with_room = df_flat.withColumn(
+    "room_key",
+    regexp_replace(col("device_id"), r"-[0-9]+$", "")
+)
+
+enriched = df_with_room.join(
+    rooms,
+    df_with_room["room_key"] == rooms["room"],
+    "left"
+)
+
+enriched.select(
+    "device_id", "room_key", "room", "building", "floor", "co2", "temperature"
+).show(truncate=False)
+```
