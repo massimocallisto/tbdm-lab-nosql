@@ -1,5 +1,41 @@
 # PySpark lab: exploring IoT sensor data
 
+## Example 0
+This is the original example from https://spark.apache.org/.
+However, reading the CSV will map the 'AccountBalance' field to a string, causing the analysis to fail.
+The code below provides a custom schema when reading.
+
+```python
+from pyspark.sql.types import StructType, StructField, IntegerType, StringType, DoubleType, BooleanType
+
+# 1. Define the schema
+schema = StructType([
+    StructField("AccountID", StringType(), nullable=False),
+    StructField("AccountType", StringType(), nullable=False),
+    StructField("AccountBalance", DoubleType(), nullable=False),
+    StructField("CountOfDependents", IntegerType(), nullable=False),
+    StructField("CreditScore", IntegerType(), nullable=False),
+    StructField("IsActive", BooleanType(), nullable=False)
+])
+
+df = (
+    spark.read
+    .option("header", "true")  # Skip the first row if your CSV has headers
+    .schema(schema)
+    .csv("/accounts.csv")
+)
+
+df.printSchema()
+
+
+# Select subset of features and filter for balance > 0
+filtered_df = df.select("AccountBalance", "CountOfDependents").filter("AccountBalance > 0")
+
+# Generate summary statistics
+filtered_df.summary().show()
+```
+
+
 ## Context and goal
 
 In the previous labs, we collected IoT readings and considered how to store and query them with different NoSQL models. This exercise looks at a different question: **how can we process a collection of stored readings to produce an analytical result?**
